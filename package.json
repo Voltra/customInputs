@@ -1,0 +1,19 @@
+{
+  "name": "custominputs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "clean": "npm run clean-build-steps && rm -rf dist",
+    "tsc": "./node_modules/.bin/tsc",
+    "babel": "./node_modules/.bin/babel build-tsc --out-dir build-babel --source-maps",
+    "webpack": "webpack",
+    "clean-build-steps": "rm -rf build-tsc/* build-babel/*",
+    "build": "npm run clean && npm run tsc && npm run babel && npm run webpack && npm run clean-build-steps"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.26.0"
+  }
+}
