@@ -24,10 +24,14 @@ export abstract class AbstractCustomInput{
     this.elem.parentNode.insertBefore(this.custom, this.elem.nextSibling);
     
     //WHAT IS: Changes in style
-    for(let key in this.elem.style)
+    for(let key in this.elem.style){
+      const descriptor = Object.getOwnPropertyDescriptor(this.custom.style, key);
+      if(descriptor && descriptor.writable)
         this.custom.style[key] = this.elem.style[key];
+    }
 
     this.elem.style["display"] = "none";
+    this.adjustClass();
   }
   
   protected abstract adjustClass(): AbstractCustomInput;
@@ -35,4 +39,6 @@ export abstract class AbstractCustomInput{
   protected getContent(): HTMLElement{
   	return document.createElement("SPAN") as HTMLElement;
   }
+
+  protected abstract addEventListeners(elem: HTMLInputElement, custom: HTMLElement): AbstractCustomInput;
 }

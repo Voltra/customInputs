@@ -1,6 +1,6 @@
 import {AbstractCustomInput} from "./AbstractCustomInput"
 
-export class SelectableCustomInput extends AbstractCustomInput{
+export abstract class SelectableCustomInput extends AbstractCustomInput{
 	static classes = {
         DISABLED: "disabled",
         SELECTED: "selected",
@@ -11,10 +11,6 @@ export class SelectableCustomInput extends AbstractCustomInput{
 	constructor(elem: HTMLInputElement, classNames: string = ""){
   	super(elem, classNames);
     this.addEventListeners(this.elem, this.custom);
-  }
-  
-  protected addEventListeners(elem: HTMLInputElement, custom: HTMLElement): SelectableCustomInput{
-  	return this;
   }
   
   protected getState(): string{    
@@ -44,6 +40,11 @@ export class SelectableCustomInput extends AbstractCustomInput{
     
     toRemove.forEach(className => this.custom.classList.remove(className));
     this.custom.classList.add(state);
+    return this;
+  }
+
+  protected addEventListeners(elem, custom): AbstractCustomInput{
+    elem.addEventListener("change", this.adjustClass.bind(this));
     return this;
   }
 }

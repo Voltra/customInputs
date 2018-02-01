@@ -9,7 +9,8 @@
     "babel": "./node_modules/.bin/babel build-tsc --out-dir build-babel --source-maps",
     "webpack": "webpack",
     "clean-build-steps": "rm -rf build-tsc/* build-babel/*",
-    "build": "npm run clean && npm run tsc && npm run babel && npm run webpack && npm run clean-build-steps"
+    "build": "npm run clean && npm run tsc && npm run babel && npm run webpack && npm run sass && npm run clean-build-steps",
+    "sass": "compass compile"
   },
   "author": "",
   "license": "ISC",

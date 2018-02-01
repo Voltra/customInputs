@@ -60,332 +60,235 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-function webpackEmptyContext(req) {
-	throw new Error("Cannot find module '" + req + "'.");
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const AbstractCustomInput_1 = __webpack_require__(5);
+class SelectableCustomInput extends AbstractCustomInput_1.AbstractCustomInput {
+    constructor(elem, classNames = "") {
+        super(elem, classNames);
+        this.addEventListeners(this.elem, this.custom);
+    }
+    getState() {
+        if (this.elem.disabled) return SelectableCustomInput.classes.DISABLED;else if (this.elem.indeterminate) return SelectableCustomInput.classes.INDETERMINATE;else if (this.elem.checked) return SelectableCustomInput.classes.SELECTED;else return SelectableCustomInput.classes.NOT_SELECTED;
+    }
+    adjustClass() {
+        const classes = Object.values(SelectableCustomInput.classes);
+        const thisClasses = classes.filter(className => {
+            return this.custom.classList.contains(className);
+        });
+        const state = this.getState();
+        if (thisClasses.includes(state)) return this;
+        const toRemove = thisClasses.filter(className => className !== state);
+        toRemove.forEach(className => this.custom.classList.remove(className));
+        this.custom.classList.add(state);
+        return this;
+    }
+    addEventListeners(elem, custom) {
+        elem.addEventListener("change", this.adjustClass.bind(this));
+        return this;
+    }
 }
-webpackEmptyContext.keys = function() { return []; };
-webpackEmptyContext.resolve = webpackEmptyContext;
-module.exports = webpackEmptyContext;
-webpackEmptyContext.id = 0;
+SelectableCustomInput.classes = {
+    DISABLED: "disabled",
+    SELECTED: "selected",
+    INDETERMINATE: "indeterminate",
+    NOT_SELECTED: "not-selected"
+};
+exports.SelectableCustomInput = SelectableCustomInput;
+//# sourceMappingURL=SelectableCustomInput.js.map
+//# sourceMappingURL=SelectableCustomInput.js.map
 
 /***/ }),
 /* 1 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-function webpackEmptyContext(req) {
-	throw new Error("Cannot find module '" + req + "'.");
-}
-webpackEmptyContext.keys = function() { return []; };
-webpackEmptyContext.resolve = webpackEmptyContext;
-module.exports = webpackEmptyContext;
-webpackEmptyContext.id = 1;
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const make_bind_1 = __webpack_require__(2);
+const CustomInputsHub_1 = __webpack_require__(7);
+document.addEventListener("DOMContentLoaded", () => {
+    const checkBoxes = Array.from(document.querySelectorAll("input[type='checkbox'][data-custom]")).map(e => e);
+    const radioButtons = Array.from(document.querySelectorAll("input[type='radio'][data-custom]")).map(e => e);
+    CustomInputsHub_1.CustomInputsHub.getInstance().mapAndAddAll(checkBoxes, make_bind_1.makeCheckBox).mapAndAddAll(radioButtons, make_bind_1.makeRadioButton);
+    console.log("/***********************************\\");
+    console.log("\\***********************************/");
+});
+//# sourceMappingURL=app.js.map
+//# sourceMappingURL=app.js.map
 
 /***/ }),
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (factory) {
-    if (typeof module === "object" && typeof module.exports === "object") {
-        var v = factory(!(function webpackMissingModule() { var e = new Error("Cannot find module \".\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()), exports);
-        if (v !== undefined) module.exports = v;
-    } else if (true) {
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(8)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-    }
-})(function (require, exports) {
-    "use strict";
+"use strict";
 
-    Object.defineProperty(exports, "__esModule", { value: true });
-    const AbstractCustomInput_1 = require("./AbstractCustomInput");
-    class SelectableCustomInput extends AbstractCustomInput_1.AbstractCustomInput {
-        constructor(elem, classNames = "") {
-            super(elem, classNames);
-            this.addEventListeners(this.elem, this.custom);
-        }
-        addEventListeners(elem, custom) {
-            return this;
-        }
-        getState() {
-            if (this.elem.disabled) return SelectableCustomInput.classes.DISABLED;else if (this.elem.indeterminate) return SelectableCustomInput.classes.INDETERMINATE;else if (this.elem.checked) return SelectableCustomInput.classes.SELECTED;else return SelectableCustomInput.classes.NOT_SELECTED;
-        }
-        adjustClass() {
-            const classes = Object.values(SelectableCustomInput.classes);
-            const thisClasses = classes.filter(className => {
-                return this.custom.classList.contains(className);
-            });
-            const state = this.getState();
-            if (thisClasses.includes(state)) return this;
-            const toRemove = thisClasses.filter(className => className !== state);
-            toRemove.forEach(className => this.custom.classList.remove(className));
-            this.custom.classList.add(state);
-            return this;
-        }
-    }
-    SelectableCustomInput.classes = {
-        DISABLED: "disabled",
-        SELECTED: "selected",
-        INDETERMINATE: "indeterminate",
-        NOT_SELECTED: "not-selected"
-    };
-    exports.SelectableCustomInput = SelectableCustomInput;
-});
-//# sourceMappingURL=SelectableCustomInput.js.map
-//# sourceMappingURL=SelectableCustomInput.js.map
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const make_1 = __webpack_require__(3);
+const CheckBox_1 = __webpack_require__(4);
+const RadioButton_1 = __webpack_require__(6);
+exports.makeCheckBox = make_1.make.bind(make_1.make, CheckBox_1.CheckBox);
+exports.makeRadioButton = make_1.make.bind(make_1.make, RadioButton_1.RadioButton);
+//# sourceMappingURL=make-bind.js.map
+//# sourceMappingURL=make-bind.js.map
 
 /***/ }),
 /* 3 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-function webpackEmptyContext(req) {
-	throw new Error("Cannot find module '" + req + "'.");
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", { value: true });
+function make(Class, ...args) {
+    return new Class(...args);
 }
-webpackEmptyContext.keys = function() { return []; };
-webpackEmptyContext.resolve = webpackEmptyContext;
-module.exports = webpackEmptyContext;
-webpackEmptyContext.id = 3;
+exports.make = make;
+//# sourceMappingURL=make.js.map
+//# sourceMappingURL=make.js.map
 
 /***/ }),
 /* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (factory) {
-    if (typeof module === "object" && typeof module.exports === "object") {
-        var v = factory(!(function webpackMissingModule() { var e = new Error("Cannot find module \".\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()), exports);
-        if (v !== undefined) module.exports = v;
-    } else if (true) {
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(5), __webpack_require__(10)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-    }
-})(function (require, exports) {
-    "use strict";
+"use strict";
 
-    Object.defineProperty(exports, "__esModule", { value: true });
-    const make_bind_1 = require("./make-bind");
-    const CustomInputsHub_1 = require("./inputs/CustomInputsHub");
-    document.addEventListener("DOMContentLoaded", () => {
-        const checkBoxes = Array.from(document.querySelectorAll("input[type='checkbox'][data-custom]")).map(e => e);
-        const radioButtons = Array.from(document.querySelectorAll("input[type='radio'][data-custom]")).map(e => e);
-        CustomInputsHub_1.CustomInputsHub.getInstance().mapAndAddAll(checkBoxes, make_bind_1.makeCheckBox).mapAndAddAll(radioButtons, make_bind_1.makeRadioButton);
-    });
-});
-//# sourceMappingURL=app.js.map
-//# sourceMappingURL=app.js.map
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const SelectableCustomInput_1 = __webpack_require__(0);
+class CheckBox extends SelectableCustomInput_1.SelectableCustomInput {
+    constructor(checkbox, classNames) {
+        super(checkbox, `checkbox ${classNames}`);
+    }
+    getContent() {
+        const container = document.createElement("DIV");
+        const indicator = document.createElement("DIV");
+        container.classList.add("container");
+        indicator.classList.add("indicator");
+        container.appendChild(indicator);
+        return container;
+    }
+    addEventListeners(elem, custom) {
+        super.addEventListeners(elem, custom);
+        custom.addEventListener("click", () => {
+            const currentState = this.getState();
+            const states = SelectableCustomInput_1.SelectableCustomInput.classes;
+            if (currentState === states.DISABLED) return;
+            elem.checked = currentState === states.INDETERMINATE || currentState === states.NOT_SELECTED;
+            if (elem.indeterminate) elem.indeterminate = false;
+            this.adjustClass();
+            console.log("Old state: ", currentState);
+            console.log("Was not disabled");
+            console.log("Is now: ", elem.checked ? states.SELECTED : states.NOT_SELECTED);
+            console.log("Indeterminate state: ", elem.indeterminate);
+            console.log("New state: ", this.getState());
+            console.log("/***********************************\\");
+            console.log("\\***********************************/");
+        });
+        return this;
+    }
+}
+exports.CheckBox = CheckBox;
+//# sourceMappingURL=CheckBox.js.map
+//# sourceMappingURL=CheckBox.js.map
 
 /***/ }),
 /* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (factory) {
-    if (typeof module === "object" && typeof module.exports === "object") {
-        var v = factory(!(function webpackMissingModule() { var e = new Error("Cannot find module \".\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()), exports);
-        if (v !== undefined) module.exports = v;
-    } else if (true) {
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(6), __webpack_require__(7), __webpack_require__(9)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-    }
-})(function (require, exports) {
-    "use strict";
+"use strict";
 
-    Object.defineProperty(exports, "__esModule", { value: true });
-    const make_1 = require("./make");
-    const CheckBox_1 = require("./inputs/CheckBox");
-    const RadioButton_1 = require("./inputs/RadioButton");
-    exports.makeCheckBox = make_1.make.bind(make_1.make, CheckBox_1.CheckBox);
-    exports.makeRadioButton = make_1.make.bind(make_1.make, RadioButton_1.RadioButton);
-});
-//# sourceMappingURL=make-bind.js.map
-//# sourceMappingURL=make-bind.js.map
+
+Object.defineProperty(exports, "__esModule", { value: true });
+class AbstractCustomInput {
+    constructor(elem, classNames) {
+        this.elem = elem;
+        const classes = classNames.split(/\s+/g).filter(str => str !== "");
+        const div = document.createElement("DIV");
+        div.classList.add("custom");
+        classes.forEach(className => div.classList.add(className));
+        const innerSpan = this.getContent();
+        div.appendChild(innerSpan);
+        this.custom = div;
+        this.elem.parentNode.insertBefore(this.custom, this.elem.nextSibling);
+        for (let key in this.elem.style) {
+            const descriptor = Object.getOwnPropertyDescriptor(this.custom.style, key);
+            if (descriptor && descriptor.writable) this.custom.style[key] = this.elem.style[key];
+        }
+        this.elem.style["display"] = "none";
+        this.adjustClass();
+    }
+    getContent() {
+        return document.createElement("SPAN");
+    }
+}
+exports.AbstractCustomInput = AbstractCustomInput;
+//# sourceMappingURL=AbstractCustomInput.js.map
+//# sourceMappingURL=AbstractCustomInput.js.map
 
 /***/ }),
 /* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (factory) {
-    if (typeof module === "object" && typeof module.exports === "object") {
-        var v = factory(!(function webpackMissingModule() { var e = new Error("Cannot find module \".\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()), exports);
-        if (v !== undefined) module.exports = v;
-    } else if (true) {
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-    }
-})(function (require, exports) {
-    "use strict";
+"use strict";
 
-    Object.defineProperty(exports, "__esModule", { value: true });
-    function make(Class, ...args) {
-        return new Class(...args);
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const SelectableCustomInput_1 = __webpack_require__(0);
+class RadioButton extends SelectableCustomInput_1.SelectableCustomInput {
+    constructor(radioButton, classNames) {
+        super(radioButton, `radio-button ${classNames}`);
     }
-    exports.make = make;
-});
-//# sourceMappingURL=make.js.map
-//# sourceMappingURL=make.js.map
+}
+exports.RadioButton = RadioButton;
+//# sourceMappingURL=RadioButton.js.map
+//# sourceMappingURL=RadioButton.js.map
 
 /***/ }),
 /* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (factory) {
-    if (typeof module === "object" && typeof module.exports === "object") {
-        var v = factory(!(function webpackMissingModule() { var e = new Error("Cannot find module \".\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()), exports);
-        if (v !== undefined) module.exports = v;
-    } else if (true) {
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(2)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", { value: true });
+class CustomInputsHub {
+    constructor() {
+        this.inner = [];
     }
-})(function (require, exports) {
-    "use strict";
-
-    Object.defineProperty(exports, "__esModule", { value: true });
-    const SelectableCustomInput_1 = require("./abstractions/SelectableCustomInput");
-    class CheckBox extends SelectableCustomInput_1.SelectableCustomInput {
-        constructor(checkbox, classNames) {
-            super(checkbox, `checkbox ${classNames}`);
-        }
-        getContent() {
-            const container = document.createElement("DIV");
-            const indicator = document.createElement("DIV");
-            container.classList.add("container");
-            container.appendChild(indicator);
-            return container;
-        }
+    add(customInput) {
+        this.inner.push(customInput);
+        return this;
     }
-    exports.CheckBox = CheckBox;
-});
-//# sourceMappingURL=CheckBox.js.map
-//# sourceMappingURL=CheckBox.js.map
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (factory) {
-    if (typeof module === "object" && typeof module.exports === "object") {
-        var v = factory(!(function webpackMissingModule() { var e = new Error("Cannot find module \".\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()), exports);
-        if (v !== undefined) module.exports = v;
-    } else if (true) {
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+    addAll(customInputs) {
+        customInputs.forEach(this.add.bind(this));
+        return this;
     }
-})(function (require, exports) {
-    "use strict";
-
-    Object.defineProperty(exports, "__esModule", { value: true });
-    class AbstractCustomInput {
-        constructor(elem, classNames) {
-            this.elem = elem;
-            const classes = classNames.split(/\s+/g).filter(str => str !== "");
-            const div = document.createElement("DIV");
-            div.classList.add("custom");
-            classes.forEach(className => div.classList.add(className));
-            const innerSpan = this.getContent();
-            div.appendChild(innerSpan);
-            this.custom = div;
-            this.elem.parentNode.insertBefore(this.custom, this.elem.nextSibling);
-            for (let key in this.elem.style) this.custom.style[key] = this.elem.style[key];
-            this.elem.style["display"] = "none";
-        }
-        getContent() {
-            return document.createElement("SPAN");
-        }
+    mapAndAdd(elem, mapper) {
+        return this.add(mapper(elem));
     }
-    exports.AbstractCustomInput = AbstractCustomInput;
-});
-//# sourceMappingURL=AbstractCustomInput.js.map
-//# sourceMappingURL=AbstractCustomInput.js.map
-
-/***/ }),
-/* 9 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (factory) {
-    if (typeof module === "object" && typeof module.exports === "object") {
-        var v = factory(!(function webpackMissingModule() { var e = new Error("Cannot find module \".\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()), exports);
-        if (v !== undefined) module.exports = v;
-    } else if (true) {
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(2)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+    mapAndAddAll(elems, mapper) {
+        elems.map(mapper).forEach(this.add.bind(this));
+        return this;
     }
-})(function (require, exports) {
-    "use strict";
-
-    Object.defineProperty(exports, "__esModule", { value: true });
-    const SelectableCustomInput_1 = require("./abstractions/SelectableCustomInput");
-    class RadioButton extends SelectableCustomInput_1.SelectableCustomInput {
-        constructor(radioButton, classNames) {
-            super(radioButton, `radio-button ${classNames}`);
-        }
+    static getInstance() {
+        if (CustomInputsHub.instance === null) CustomInputsHub.instance = new CustomInputsHub();
+        return CustomInputsHub.instance;
     }
-    exports.RadioButton = RadioButton;
-});
-//# sourceMappingURL=RadioButton.js.map
-//# sourceMappingURL=RadioButton.js.map
-
-/***/ }),
-/* 10 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (factory) {
-    if (typeof module === "object" && typeof module.exports === "object") {
-        var v = factory(!(function webpackMissingModule() { var e = new Error("Cannot find module \".\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()), exports);
-        if (v !== undefined) module.exports = v;
-    } else if (true) {
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-    }
-})(function (require, exports) {
-    "use strict";
-
-    Object.defineProperty(exports, "__esModule", { value: true });
-    class CustomInputsHub {
-        constructor() {
-            this.inner = [];
-        }
-        add(customInput) {
-            this.inner.push(customInput);
-            return this;
-        }
-        addAll(customInputs) {
-            customInputs.forEach(this.add.bind(this));
-            return this;
-        }
-        mapAndAdd(elem, mapper) {
-            return this.add(mapper(elem));
-        }
-        mapAndAddAll(elems, mapper) {
-            elems.map(mapper).forEach(this.add.bind(this));
-            return this;
-        }
-        static getInstance() {
-            if (CustomInputsHub.instance === null) CustomInputsHub.instance = new CustomInputsHub();
-            return CustomInputsHub.instance;
-        }
-    }
-    CustomInputsHub.instance = null;
-    exports.CustomInputsHub = CustomInputsHub;
-});
+}
+CustomInputsHub.instance = null;
+exports.CustomInputsHub = CustomInputsHub;
 //# sourceMappingURL=CustomInputsHub.js.map
 //# sourceMappingURL=CustomInputsHub.js.map
 

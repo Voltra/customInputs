@@ -10,6 +10,10 @@ document.addEventListener("DOMContentLoaded", ()=>{
         document.querySelectorAll("input[type='radio'][data-custom]")
     ).map(e => (e as HTMLInputElement));
     
-    CustomInputsHub.getInstance().mapAndAddAll(checkBoxes, makeCheckBox)
+    CustomInputsHub.getInstance()
+    .mapAndAddAll(checkBoxes, makeCheckBox)
     .mapAndAddAll(radioButtons, makeRadioButton);
+
+    console.log("/***********************************\\");
+    console.log("\\***********************************/");
 });
