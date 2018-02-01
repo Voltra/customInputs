@@ -14,8 +14,8 @@
             "es2015",
             "es2017"
         ],
-        "rootDir": "./ts",      /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */
-        "outDir": "./build-tsc",
+        "rootDir": "./ts",
+        "outDir": "./build-tsc"
     },
     "exclude": [
         ".vscode",

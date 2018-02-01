@@ -1,5 +1,5 @@
 import {makeCheckBox, makeRadioButton} from "./make-bind"
-import {CustomInputsHub} from "./CustomInputsHub"
+import {CustomInputsHub} from "./inputs/CustomInputsHub"
 
 document.addEventListener("DOMContentLoaded", ()=>{
     const checkBoxes: Array<HTMLInputElement> = Array.from(
