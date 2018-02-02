@@ -31,14 +31,6 @@ export class CheckBox extends SelectableCustomInput{
         elem.indeterminate = false;
       
       this.adjustClass();
-
-      console.log("Old state: ", currentState);
-      console.log("Was not disabled");
-      console.log("Is now: ", elem.checked ? states.SELECTED : states.NOT_SELECTED);
-      console.log("Indeterminate state: ", elem.indeterminate);
-      console.log("New state: ", this.getState());
-      console.log("/***********************************\\");
-      console.log("\\***********************************/");
     });
     return this;
   }

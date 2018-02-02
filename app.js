@@ -60,11 +60,49 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const SelectableCustomInput_1 = __webpack_require__(1);
+class CheckBox extends SelectableCustomInput_1.SelectableCustomInput {
+    constructor(checkbox, classNames) {
+        super(checkbox, `checkbox ${classNames}`);
+    }
+    getContent() {
+        const container = document.createElement("DIV");
+        const indicator = document.createElement("DIV");
+        container.classList.add("container");
+        indicator.classList.add("indicator");
+        container.appendChild(indicator);
+        return container;
+    }
+    addEventListeners(elem, custom) {
+        super.addEventListeners(elem, custom);
+        custom.addEventListener("click", () => {
+            const currentState = this.getState();
+            const states = SelectableCustomInput_1.SelectableCustomInput.classes;
+            if (currentState === states.DISABLED) return;
+            elem.checked = currentState === states.INDETERMINATE || currentState === states.NOT_SELECTED;
+            if (elem.indeterminate) elem.indeterminate = false;
+            this.adjustClass();
+        });
+        return this;
+    }
+}
+exports.CheckBox = CheckBox;
+//# sourceMappingURL=CheckBox.js.map
+//# sourceMappingURL=CheckBox.js.map
+
+/***/ }),
+/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -108,7 +146,7 @@ exports.SelectableCustomInput = SelectableCustomInput;
 //# sourceMappingURL=SelectableCustomInput.js.map
 
 /***/ }),
-/* 1 */
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -148,26 +186,6 @@ exports.CustomInputsHub = CustomInputsHub;
 //# sourceMappingURL=CustomInputsHub.js.map
 
 /***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", { value: true });
-const make_bind_1 = __webpack_require__(3);
-const CustomInputsHub_1 = __webpack_require__(1);
-document.addEventListener("DOMContentLoaded", () => {
-    const checkBoxes = Array.from(document.querySelectorAll("input[type='checkbox'][data-custom]")).map(e => e);
-    const radioButtons = Array.from(document.querySelectorAll("input[type='radio'][data-custom]")).map(e => e);
-    CustomInputsHub_1.CustomInputsHub.getInstance().mapAndAddAll(checkBoxes, make_bind_1.makeCheckBox).mapAndAddAll(radioButtons, make_bind_1.makeRadioButton);
-    console.log("/***********************************\\");
-    console.log("\\***********************************/");
-});
-//# sourceMappingURL=app.js.map
-//# sourceMappingURL=app.js.map
-
-/***/ }),
 /* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -175,16 +193,40 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const make_1 = __webpack_require__(4);
-const CheckBox_1 = __webpack_require__(5);
+const make_bind_1 = __webpack_require__(4);
+const CustomInputsHub_1 = __webpack_require__(2);
+document.addEventListener("DOMContentLoaded", () => {
+    const checkBoxes = Array.from(document.querySelectorAll("input[type='checkbox'][data-custom]")).map(e => e);
+    const radioButtons = Array.from(document.querySelectorAll("input[type='radio'][data-custom]")).map(e => e);
+    const checkBoxTicks = Array.from(document.querySelectorAll("input[type='checkbox'][data-custom-tick]")).map(e => e);
+    const checkBoxToggles = Array.from(document.querySelectorAll("input[type='checkbox'][data-custom-toggle]")).map(e => e);
+    CustomInputsHub_1.CustomInputsHub.getInstance().mapAndAddAll(checkBoxes, make_bind_1.makeCheckBox).mapAndAddAll(radioButtons, make_bind_1.makeRadioButton).mapAndAddAll(checkBoxTicks, make_bind_1.makeCheckBoxTick).mapAndAddAll(checkBoxToggles, make_bind_1.makeCheckBoxToggle);
+});
+//# sourceMappingURL=app.js.map
+//# sourceMappingURL=app.js.map
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const make_1 = __webpack_require__(5);
+const CheckBox_1 = __webpack_require__(0);
 const RadioButton_1 = __webpack_require__(7);
+const CheckBoxTick_1 = __webpack_require__(8);
+const CheckBoxToggle_1 = __webpack_require__(9);
 exports.makeCheckBox = make_1.make.bind(make_1.make, CheckBox_1.CheckBox);
 exports.makeRadioButton = make_1.make.bind(make_1.make, RadioButton_1.RadioButton);
+exports.makeCheckBoxTick = make_1.make.bind(make_1.make, CheckBoxTick_1.CheckBoxTick);
+exports.makeCheckBoxToggle = make_1.make.bind(make_1.make, CheckBoxToggle_1.CheckBoxToggle);
 //# sourceMappingURL=make-bind.js.map
 //# sourceMappingURL=make-bind.js.map
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -197,51 +239,6 @@ function make(Class, ...args) {
 exports.make = make;
 //# sourceMappingURL=make.js.map
 //# sourceMappingURL=make.js.map
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", { value: true });
-const SelectableCustomInput_1 = __webpack_require__(0);
-class CheckBox extends SelectableCustomInput_1.SelectableCustomInput {
-    constructor(checkbox, classNames) {
-        super(checkbox, `checkbox ${classNames}`);
-    }
-    getContent() {
-        const container = document.createElement("DIV");
-        const indicator = document.createElement("DIV");
-        container.classList.add("container");
-        indicator.classList.add("indicator");
-        container.appendChild(indicator);
-        return container;
-    }
-    addEventListeners(elem, custom) {
-        super.addEventListeners(elem, custom);
-        custom.addEventListener("click", () => {
-            const currentState = this.getState();
-            const states = SelectableCustomInput_1.SelectableCustomInput.classes;
-            if (currentState === states.DISABLED) return;
-            elem.checked = currentState === states.INDETERMINATE || currentState === states.NOT_SELECTED;
-            if (elem.indeterminate) elem.indeterminate = false;
-            this.adjustClass();
-            console.log("Old state: ", currentState);
-            console.log("Was not disabled");
-            console.log("Is now: ", elem.checked ? states.SELECTED : states.NOT_SELECTED);
-            console.log("Indeterminate state: ", elem.indeterminate);
-            console.log("New state: ", this.getState());
-            console.log("/***********************************\\");
-            console.log("\\***********************************/");
-        });
-        return this;
-    }
-}
-exports.CheckBox = CheckBox;
-//# sourceMappingURL=CheckBox.js.map
-//# sourceMappingURL=CheckBox.js.map
 
 /***/ }),
 /* 6 */
@@ -288,8 +285,8 @@ exports.AbstractCustomInput = AbstractCustomInput;
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const SelectableCustomInput_1 = __webpack_require__(0);
-const CustomInputsHub_1 = __webpack_require__(1);
+const SelectableCustomInput_1 = __webpack_require__(1);
+const CustomInputsHub_1 = __webpack_require__(2);
 class RadioButton extends SelectableCustomInput_1.SelectableCustomInput {
     constructor(radioButton, classNames) {
         super(radioButton, `radio-button ${classNames}`);
@@ -314,13 +311,6 @@ class RadioButton extends SelectableCustomInput_1.SelectableCustomInput {
             elem.checked = currentState !== states.SELECTED;
             if (elem.indeterminate) elem.indeterminate = false;
             this.adjustClass();
-            console.log("Old state: ", currentState);
-            console.log("Was not disabled");
-            console.log("Is now: ", elem.checked ? states.SELECTED : states.NOT_SELECTED);
-            console.log("Indeterminate state: ", elem.indeterminate);
-            console.log("New state: ", this.getState());
-            console.log("/***********************************\\");
-            console.log("\\***********************************/");
         });
         return this;
     }
@@ -328,6 +318,58 @@ class RadioButton extends SelectableCustomInput_1.SelectableCustomInput {
 exports.RadioButton = RadioButton;
 //# sourceMappingURL=RadioButton.js.map
 //# sourceMappingURL=RadioButton.js.map
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const CheckBox_1 = __webpack_require__(0);
+class CheckBoxTick extends CheckBox_1.CheckBox {
+    constructor(elem, classNames) {
+        super(elem, `check-tick ${classNames}`);
+    }
+    getContent() {
+        const indicator = document.createElement("IMG");
+        indicator.classList.add("indicator");
+        indicator.classList.add("tick");
+        indicator.src = "/blue-tick.svg";
+        indicator.alt = "tick, symbolizes validation/selection";
+        return indicator;
+    }
+}
+exports.CheckBoxTick = CheckBoxTick;
+//# sourceMappingURL=CheckBoxTick.js.map
+//# sourceMappingURL=CheckBoxTick.js.map
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const CheckBox_1 = __webpack_require__(0);
+class CheckBoxToggle extends CheckBox_1.CheckBox {
+    constructor(elem, classNames) {
+        super(elem, `check-toggle ${classNames}}`);
+    }
+    getContent() {
+        const rail = document.createElement("DIV");
+        const knob = document.createElement("DIV");
+        rail.classList.add("rail");
+        knob.classList.add("knob");
+        rail.appendChild(knob);
+        return rail;
+    }
+}
+exports.CheckBoxToggle = CheckBoxToggle;
+//# sourceMappingURL=CheckBoxToggle.js.map
+//# sourceMappingURL=CheckBoxToggle.js.map
 
 /***/ })
 /******/ ]);

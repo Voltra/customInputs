@@ -1,4 +1,4 @@
-import {makeCheckBox, makeRadioButton} from "./make-bind"
+import {makeCheckBox, makeRadioButton, makeCheckBoxTick, makeCheckBoxToggle} from "./make-bind"
 import {CustomInputsHub} from "./inputs/CustomInputsHub"
 
 document.addEventListener("DOMContentLoaded", ()=>{
@@ -9,11 +9,18 @@ document.addEventListener("DOMContentLoaded", ()=>{
     const radioButtons: Array<HTMLInputElement> = Array.from(
         document.querySelectorAll("input[type='radio'][data-custom]")
     ).map(e => (e as HTMLInputElement));
+
+    const checkBoxTicks: Array<HTMLInputElement> = Array.from(
+        document.querySelectorAll("input[type='checkbox'][data-custom-tick]")
+    ).map(e => (e as HTMLInputElement));
+
+    const checkBoxToggles: Array<HTMLInputElement> = Array.from(
+        document.querySelectorAll("input[type='checkbox'][data-custom-toggle]")
+    ).map(e => (e as HTMLInputElement));
     
     CustomInputsHub.getInstance()
     .mapAndAddAll(checkBoxes, makeCheckBox)
-    .mapAndAddAll(radioButtons, makeRadioButton);
-
-    console.log("/***********************************\\");
-    console.log("\\***********************************/");
+    .mapAndAddAll(radioButtons, makeRadioButton)
+    .mapAndAddAll(checkBoxTicks, makeCheckBoxTick)
+    .mapAndAddAll(checkBoxToggles, makeCheckBoxToggle);
 });

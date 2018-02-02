@@ -1,13 +1,5 @@
+@import "variables";
 @import "compass";
-
-$bg: #e9ebee;
-$primary: #3c3f41;
-$accent: #3b5998;
-$selected: #36c23f;
-$notSelected: transparent;
-$indeterminate: #9e9015;
-$error: #8a1d1d;
-$duration: 0.2s;
 
 *{ @include box-sizing(border-box); }
 
@@ -28,6 +20,7 @@ body{
 
     cursor: pointer;
 
+
     &.disabled{
         opacity: 0.2;
         cursor: not-allowed;
@@ -38,103 +31,8 @@ body{
         @include box-shadow(0 0 0.4vh 0.2vh rgba(#000, 0.15));
     }
 
-    &.checkbox{
-        @include border-radius($sep/2);
-        @include transition-duration($duration);
-        @include transition-property(opacity);
-        @include transition-timing-function(ease-in-out);
-
-        & .container{
-            width: 100%;
-            height: 100%;
-            position: relative;
-
-            & .indicator{
-                position: absolute;
-                top: 25%;
-                right: 25%;
-                bottom: 25%;
-                left: 25%;
-
-                background-color: transparent;
-
-                @include transition-duration($duration);
-                @include transition-property(background-color);
-                @include transition-timing-function(ease-in-out);
-            }
-        }
-
-        &.selected .container .indicator{
-            background-color: $selected;
-        }
-
-        &.not-selected .container .indicator{
-            //background-color: $notSelected;
-            background-color: $notSelected;
-        }
-
-        &.indeterminate .container .indicator{
-            background-color: $indeterminate;
-        }
-    }
-
-    &.radio-button{
-        @include border-radius(100vw);
-
-        & .outer{
-            position: relative;
-            width: 100%;
-            height: 100%;
-
-            border: 1px solid transparent;
-            @include border-radius(100vw);
-            @include scale(0.8);
-
-            @include transition-duration($duration);
-            @include transition-property(border-color);
-            @include transition-timing-function(ease-in-out);
-
-            & .inner{
-                background-color: transparent;
-                width: 100%;
-                height: 100%;
-                @include border-radius(100vw);
-                @include scale(0.8);
-
-                @include transition-duration($duration);
-                @include transition-property(background-color);
-                @include transition-timing-function(ease-in-out);
-            }
-        }
-
-        &.selected{
-            & .outer{
-                border-color: $selected;
-
-                & .inner{
-                    background-color: $selected;
-                }
-            }
-        }
-
-        &.not-selected{
-            & .outer{
-                border-color: $notSelected;
-
-                & .inner{
-                    background-color: $notSelected;
-                }
-            }
-        }
-
-        &.indeterminate{
-            & .outer{
-                border-color: $indeterminate;
-
-                & .inner{
-                    background-color: $indeterminate;
-                }
-            }
-        }
-    }
+    @import "checkbox";
+    @import "radio-button";
+    @import "checkbox-tick";
+    @import "checkbox-toggle";
 }

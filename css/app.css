@@ -1,16 +1,16 @@
-/* line 12, ../sass/app.scss */
+/* line 4, ../sass/app.scss */
 * {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 
-/* line 14, ../sass/app.scss */
+/* line 6, ../sass/app.scss */
 body {
   background-color: #e9ebee;
 }
 
-/* line 18, ../sass/app.scss */
+/* line 10, ../sass/app.scss */
 .custom {
   width: 4vh;
   height: 4vh;
@@ -19,19 +19,19 @@ body {
   position: relative;
   cursor: pointer;
 }
-/* line 31, ../sass/app.scss */
+/* line 24, ../sass/app.scss */
 .custom.disabled {
   opacity: 0.2;
   cursor: not-allowed;
 }
-/* line 36, ../sass/app.scss */
+/* line 29, ../sass/app.scss */
 .custom {
   background-color: white;
   -moz-box-shadow: 0 0 0.4vh 0.2vh rgba(0, 0, 0, 0.15);
   -webkit-box-shadow: 0 0 0.4vh 0.2vh rgba(0, 0, 0, 0.15);
   box-shadow: 0 0 0.4vh 0.2vh rgba(0, 0, 0, 0.15);
 }
-/* line 41, ../sass/app.scss */
+/* line 3, ../sass/_checkbox.scss */
 .custom.checkbox {
   -moz-border-radius: 0.5vh;
   -webkit-border-radius: 0.5vh;
@@ -49,13 +49,13 @@ body {
   -webkit-transition-timing-function: ease-in-out;
   transition-timing-function: ease-in-out;
 }
-/* line 47, ../sass/app.scss */
+/* line 9, ../sass/_checkbox.scss */
 .custom.checkbox .container {
   width: 100%;
   height: 100%;
   position: relative;
 }
-/* line 52, ../sass/app.scss */
+/* line 14, ../sass/_checkbox.scss */
 .custom.checkbox .container .indicator {
   position: absolute;
   top: 25%;
@@ -76,25 +76,25 @@ body {
   -webkit-transition-timing-function: ease-in-out;
   transition-timing-function: ease-in-out;
 }
-/* line 67, ../sass/app.scss */
+/* line 29, ../sass/_checkbox.scss */
 .custom.checkbox.selected .container .indicator {
   background-color: #36c23f;
 }
-/* line 71, ../sass/app.scss */
+/* line 33, ../sass/_checkbox.scss */
 .custom.checkbox.not-selected .container .indicator {
   background-color: transparent;
 }
-/* line 76, ../sass/app.scss */
+/* line 38, ../sass/_checkbox.scss */
 .custom.checkbox.indeterminate .container .indicator {
   background-color: #9e9015;
 }
-/* line 81, ../sass/app.scss */
+/* line 4, ../sass/_radio-button.scss */
 .custom.radio-button {
   -moz-border-radius: 100vw;
   -webkit-border-radius: 100vw;
   border-radius: 100vw;
 }
-/* line 84, ../sass/app.scss */
+/* line 7, ../sass/_radio-button.scss */
 .custom.radio-button .outer {
   position: relative;
   width: 100%;
@@ -120,7 +120,7 @@ body {
   -webkit-transition-timing-function: ease-in-out;
   transition-timing-function: ease-in-out;
 }
-/* line 97, ../sass/app.scss */
+/* line 20, ../sass/_radio-button.scss */
 .custom.radio-button .outer .inner {
   background-color: transparent;
   width: 100%;
@@ -128,10 +128,10 @@ body {
   -moz-border-radius: 100vw;
   -webkit-border-radius: 100vw;
   border-radius: 100vw;
-  -moz-transform: scale(0.8, 0.8);
-  -ms-transform: scale(0.8, 0.8);
-  -webkit-transform: scale(0.8, 0.8);
-  transform: scale(0.8, 0.8);
+  -moz-transform: scale(0.6, 0.6);
+  -ms-transform: scale(0.6, 0.6);
+  -webkit-transform: scale(0.6, 0.6);
+  transform: scale(0.6, 0.6);
   -moz-transition-duration: 0.2s;
   -o-transition-duration: 0.2s;
   -webkit-transition-duration: 0.2s;
@@ -145,27 +145,163 @@ body {
   -webkit-transition-timing-function: ease-in-out;
   transition-timing-function: ease-in-out;
 }
-/* line 111, ../sass/app.scss */
+/* line 34, ../sass/_radio-button.scss */
 .custom.radio-button.selected .outer {
   border-color: #36c23f;
 }
-/* line 114, ../sass/app.scss */
+/* line 37, ../sass/_radio-button.scss */
 .custom.radio-button.selected .outer .inner {
   background-color: #36c23f;
 }
-/* line 121, ../sass/app.scss */
+/* line 44, ../sass/_radio-button.scss */
 .custom.radio-button.not-selected .outer {
   border-color: transparent;
 }
-/* line 124, ../sass/app.scss */
+/* line 47, ../sass/_radio-button.scss */
 .custom.radio-button.not-selected .outer .inner {
   background-color: transparent;
 }
-/* line 131, ../sass/app.scss */
+/* line 54, ../sass/_radio-button.scss */
 .custom.radio-button.indeterminate .outer {
   border-color: #9e9015;
 }
-/* line 134, ../sass/app.scss */
+/* line 57, ../sass/_radio-button.scss */
 .custom.radio-button.indeterminate .outer .inner {
+  background-color: #9e9015;
+}
+/* line 4, ../sass/_checkbox-tick.scss */
+.custom.check-tick {
+  -moz-border-radius: 0.5vh;
+  -webkit-border-radius: 0.5vh;
+  border-radius: 0.5vh;
+  -moz-transition-duration: 0.2s;
+  -o-transition-duration: 0.2s;
+  -webkit-transition-duration: 0.2s;
+  transition-duration: 0.2s;
+  -moz-transition-property: opacity;
+  -o-transition-property: opacity;
+  -webkit-transition-property: opacity;
+  transition-property: opacity;
+  -moz-transition-timing-function: ease-in-out;
+  -o-transition-timing-function: ease-in-out;
+  -webkit-transition-timing-function: ease-in-out;
+  transition-timing-function: ease-in-out;
+}
+/* line 10, ../sass/_checkbox-tick.scss */
+.custom.check-tick .tick {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  -moz-transition-duration: 0.2s;
+  -o-transition-duration: 0.2s;
+  -webkit-transition-duration: 0.2s;
+  transition-duration: 0.2s;
+  -moz-transition-property: opacity;
+  -o-transition-property: opacity;
+  -webkit-transition-property: opacity;
+  transition-property: opacity;
+  -moz-transition-timing-function: ease-in-out;
+  -o-transition-timing-function: ease-in-out;
+  -webkit-transition-timing-function: ease-in-out;
+  transition-timing-function: ease-in-out;
+}
+/* line 23, ../sass/_checkbox-tick.scss */
+.custom.check-tick.selected .tick {
+  opacity: 1;
+}
+/* line 27, ../sass/_checkbox-tick.scss */
+.custom.check-tick.not-selected .tick, .custom.check-tick.indeterminate .tick {
+  opacity: 0;
+}
+/* line 4, ../sass/_checkbox-toggle.scss */
+.custom.check-toggle {
+  width: 8vh;
+  height: 2vh;
+  -moz-border-radius: 100vw;
+  -webkit-border-radius: 100vw;
+  border-radius: 100vw;
+  -moz-transition-duration: 0.2s;
+  -o-transition-duration: 0.2s;
+  -webkit-transition-duration: 0.2s;
+  transition-duration: 0.2s;
+  -moz-transition-property: opacity;
+  -o-transition-property: opacity;
+  -webkit-transition-property: opacity;
+  transition-property: opacity;
+  -moz-transition-timing-function: ease-in-out;
+  -o-transition-timing-function: ease-in-out;
+  -webkit-transition-timing-function: ease-in-out;
+  transition-timing-function: ease-in-out;
+  background-color: #3c3f41;
+}
+/* line 13, ../sass/_checkbox-toggle.scss */
+.custom.check-toggle .rail {
+  width: 100%;
+  height: 100%;
+  -moz-transform: translateY(50%);
+  -ms-transform: translateY(50%);
+  -webkit-transform: translateY(50%);
+  transform: translateY(50%);
+  position: relative;
+}
+/* line 19, ../sass/_checkbox-toggle.scss */
+.custom.check-toggle .rail .knob {
+  position: absolute;
+  height: 200%;
+  width: 50%;
+  -moz-transform: translate3d(0%, -50%, 0);
+  -webkit-transform: translate3d(0%, -50%, 0);
+  transform: translate3d(0%, -50%, 0);
+  background-color: #3c3f41;
+  -moz-transition-duration: 0.2s;
+  -o-transition-duration: 0.2s;
+  -webkit-transition-duration: 0.2s;
+  transition-duration: 0.2s;
+  -moz-transition-property: -moz-transform, background-color;
+  -o-transition-property: -o-transform, background-color;
+  -webkit-transition-property: -webkit-transform, background-color;
+  transition-property: transform, background-color;
+  -moz-transition-timing-function: ease-in-out;
+  -o-transition-timing-function: ease-in-out;
+  -webkit-transition-timing-function: ease-in-out;
+  transition-timing-function: ease-in-out;
+  -moz-border-radius: 100vw;
+  -webkit-border-radius: 100vw;
+  border-radius: 100vw;
+}
+/* line 35, ../sass/_checkbox-toggle.scss */
+.custom.check-toggle.selected {
+  background-color: #3b5998;
+}
+/* line 37, ../sass/_checkbox-toggle.scss */
+.custom.check-toggle.selected .rail .knob {
+  -moz-transform: translate3d(100%, -50%, 0);
+  -webkit-transform: translate3d(100%, -50%, 0);
+  transform: translate3d(100%, -50%, 0);
+  background-color: #3b5998;
+}
+/* line 43, ../sass/_checkbox-toggle.scss */
+.custom.check-toggle.not-selected {
+  background-color: #3c3f41;
+}
+/* line 45, ../sass/_checkbox-toggle.scss */
+.custom.check-toggle.not-selected .rail .knob {
+  -moz-transform: translate3d(0%, -50%, 0);
+  -webkit-transform: translate3d(0%, -50%, 0);
+  transform: translate3d(0%, -50%, 0);
+  background-color: #3c3f41;
+}
+/* line 51, ../sass/_checkbox-toggle.scss */
+.custom.check-toggle.indeterminate .rail .knob {
+  background-color: #9e9015;
+}
+/* line 53, ../sass/_checkbox-toggle.scss */
+.custom.check-toggle.indeterminate .rail .knob .rail .knob {
+  -moz-transform: translate3d(100%, -50%, 0);
+  -webkit-transform: translate3d(100%, -50%, 0);
+  transform: translate3d(100%, -50%, 0);
   background-color: #9e9015;
 }

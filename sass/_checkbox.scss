@@ -1,0 +1,41 @@
+@import "compass";
+
+&.checkbox{
+    @include border-radius($sep/2);
+    @include transition-duration($duration);
+    @include transition-property(opacity);
+    @include transition-timing-function(ease-in-out);
+
+    & .container{
+        width: 100%;
+        height: 100%;
+        position: relative;
+
+        & .indicator{
+            position: absolute;
+            top: 25%;
+            right: 25%;
+            bottom: 25%;
+            left: 25%;
+
+            background-color: transparent;
+
+            @include transition-duration($duration);
+            @include transition-property(background-color);
+            @include transition-timing-function(ease-in-out);
+        }
+    }
+
+    &.selected .container .indicator{
+        background-color: $selected;
+    }
+
+    &.not-selected .container .indicator{
+        //background-color: $notSelected;
+        background-color: $notSelected;
+    }
+
+    &.indeterminate .container .indicator{
+        background-color: $indeterminate;
+    }
+}

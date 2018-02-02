@@ -1,0 +1,62 @@
+@import "compass";
+@import "variables";
+
+&.radio-button{
+    @include border-radius(100vw);
+
+    & .outer{
+        position: relative;
+        width: 100%;
+        height: 100%;
+
+        border: 1px solid transparent;
+        @include border-radius(100vw);
+        @include scale(0.8);
+
+        @include transition-duration($duration);
+        @include transition-property(border-color);
+        @include transition-timing-function(ease-in-out);
+
+        & .inner{
+            background-color: transparent;
+            width: 100%;
+            height: 100%;
+            @include border-radius(100vw);
+            @include scale(0.6);
+
+            @include transition-duration($duration);
+            @include transition-property(background-color);
+            @include transition-timing-function(ease-in-out);
+        }
+    }
+
+    &.selected{
+        & .outer{
+            border-color: $selected;
+
+            & .inner{
+                background-color: $selected;
+            }
+        }
+    }
+
+    &.not-selected{
+        & .outer{
+            border-color: $notSelected;
+
+            & .inner{
+                background-color: $notSelected;
+            }
+        }
+    }
+
+    &.indeterminate{
+        & .outer{
+            border-color: $indeterminate;
+
+            & .inner{
+                background-color: $indeterminate;
+            }
+        }
+    }
+}
