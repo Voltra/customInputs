@@ -17,7 +17,7 @@ export class CheckBox extends SelectableCustomInput{
   	return container;
   }
 
-  protected addEventListeners(elem, custom): AbstractCustomInput{
+  protected addEventListeners(elem: HTMLInputElement, custom: HTMLElement): AbstractCustomInput{
     super.addEventListeners(elem, custom);
     custom.addEventListener("click", ()=>{
       const currentState = this.getState();

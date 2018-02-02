@@ -1,16 +1,16 @@
-/* line 10, ../sass/app.scss */
+/* line 11, ../sass/app.scss */
 * {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 
-/* line 12, ../sass/app.scss */
+/* line 13, ../sass/app.scss */
 body {
   background-color: #e9ebee;
 }
 
-/* line 16, ../sass/app.scss */
+/* line 17, ../sass/app.scss */
 .custom {
   width: 4vh;
   height: 4vh;
@@ -19,27 +19,27 @@ body {
   position: relative;
   cursor: pointer;
 }
-/* line 29, ../sass/app.scss */
+/* line 30, ../sass/app.scss */
 .custom.disabled {
   opacity: 0.2;
   cursor: not-allowed;
 }
-/* line 34, ../sass/app.scss */
+/* line 35, ../sass/app.scss */
 .custom {
   background-color: white;
   -moz-box-shadow: 0 0 0.4vh 0.2vh rgba(0, 0, 0, 0.15);
   -webkit-box-shadow: 0 0 0.4vh 0.2vh rgba(0, 0, 0, 0.15);
   box-shadow: 0 0 0.4vh 0.2vh rgba(0, 0, 0, 0.15);
 }
-/* line 39, ../sass/app.scss */
+/* line 40, ../sass/app.scss */
 .custom.checkbox {
   -moz-border-radius: 0.5vh;
   -webkit-border-radius: 0.5vh;
   border-radius: 0.5vh;
-  -moz-transition-duration: 0.3s;
-  -o-transition-duration: 0.3s;
-  -webkit-transition-duration: 0.3s;
-  transition-duration: 0.3s;
+  -moz-transition-duration: 0.2s;
+  -o-transition-duration: 0.2s;
+  -webkit-transition-duration: 0.2s;
+  transition-duration: 0.2s;
   -moz-transition-property: opacity;
   -o-transition-property: opacity;
   -webkit-transition-property: opacity;
@@ -49,13 +49,13 @@ body {
   -webkit-transition-timing-function: ease-in-out;
   transition-timing-function: ease-in-out;
 }
-/* line 47, ../sass/app.scss */
+/* line 48, ../sass/app.scss */
 .custom.checkbox .container {
   width: 100%;
   height: 100%;
   position: relative;
 }
-/* line 52, ../sass/app.scss */
+/* line 53, ../sass/app.scss */
 .custom.checkbox .container .indicator {
   position: absolute;
   top: 25%;
@@ -63,10 +63,10 @@ body {
   bottom: 25%;
   left: 25%;
   background-color: transparent;
-  -moz-transition-duration: 0.3s;
-  -o-transition-duration: 0.3s;
-  -webkit-transition-duration: 0.3s;
-  transition-duration: 0.3s;
+  -moz-transition-duration: 0.2s;
+  -o-transition-duration: 0.2s;
+  -webkit-transition-duration: 0.2s;
+  transition-duration: 0.2s;
   -moz-transition-property: background-color;
   -o-transition-property: background-color;
   -webkit-transition-property: background-color;
@@ -76,21 +76,72 @@ body {
   -webkit-transition-timing-function: ease-in-out;
   transition-timing-function: ease-in-out;
 }
-/* line 67, ../sass/app.scss */
+/* line 68, ../sass/app.scss */
 .custom.checkbox.selected .container .indicator {
   background-color: #36c23f;
 }
-/* line 71, ../sass/app.scss */
+/* line 72, ../sass/app.scss */
 .custom.checkbox.not-selected .container .indicator {
   background-color: transparent;
 }
-/* line 76, ../sass/app.scss */
+/* line 77, ../sass/app.scss */
 .custom.checkbox.indeterminate .container .indicator {
   background-color: #9e9015;
 }
-/* line 81, ../sass/app.scss */
+/* line 82, ../sass/app.scss */
 .custom.radio-button {
   -moz-border-radius: 100vw;
   -webkit-border-radius: 100vw;
   border-radius: 100vw;
+}
+/* line 85, ../sass/app.scss */
+.custom.radio-button .outer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: 1px solid transparent;
+  -moz-border-radius: 100vw;
+  -webkit-border-radius: 100vw;
+  border-radius: 100vw;
+  -moz-transform: scale(0.8, 0.8);
+  -ms-transform: scale(0.8, 0.8);
+  -webkit-transform: scale(0.8, 0.8);
+  transform: scale(0.8, 0.8);
+}
+/* line 94, ../sass/app.scss */
+.custom.radio-button .outer .inner {
+  background-color: transparent;
+  width: 100%;
+  height: 100%;
+  -moz-border-radius: 100vw;
+  -webkit-border-radius: 100vw;
+  border-radius: 100vw;
+  -moz-transform: scale(0.8, 0.8);
+  -ms-transform: scale(0.8, 0.8);
+  -webkit-transform: scale(0.8, 0.8);
+  transform: scale(0.8, 0.8);
+}
+/* line 104, ../sass/app.scss */
+.custom.radio-button.selected .outer {
+  border-color: #36c23f;
+}
+/* line 107, ../sass/app.scss */
+.custom.radio-button.selected .outer .inner {
+  background-color: #36c23f;
+}
+/* line 114, ../sass/app.scss */
+.custom.radio-button.not-selected .outer {
+  border-color: transparent;
+}
+/* line 117, ../sass/app.scss */
+.custom.radio-button.not-selected .outer .inner {
+  background-color: transparent;
+}
+/* line 124, ../sass/app.scss */
+.custom.radio-button.indeterminate .outer {
+  border-color: #9e9015;
+}
+/* line 127, ../sass/app.scss */
+.custom.radio-button.indeterminate .outer .inner {
+  background-color: #9e9015;
 }

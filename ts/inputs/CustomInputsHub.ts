@@ -5,6 +5,10 @@ export class CustomInputsHub{
 
     private constructor(){ this.inner = [] as Array<AbstractCustomInput>; }
 
+    public get(elem: HTMLElement){
+        return this.inner.find(custom => custom.getElem() === elem);
+    }
+
     public add(customInput: AbstractCustomInput): CustomInputsHub{
         this.inner.push(customInput);
         return this;

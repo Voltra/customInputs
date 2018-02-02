@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -71,7 +71,7 @@
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const AbstractCustomInput_1 = __webpack_require__(5);
+const AbstractCustomInput_1 = __webpack_require__(6);
 class SelectableCustomInput extends AbstractCustomInput_1.AbstractCustomInput {
     constructor(elem, classNames = "") {
         super(elem, classNames);
@@ -115,8 +115,48 @@ exports.SelectableCustomInput = SelectableCustomInput;
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const make_bind_1 = __webpack_require__(2);
-const CustomInputsHub_1 = __webpack_require__(7);
+class CustomInputsHub {
+    constructor() {
+        this.inner = [];
+    }
+    get(elem) {
+        return this.inner.find(custom => custom.getElem() === elem);
+    }
+    add(customInput) {
+        this.inner.push(customInput);
+        return this;
+    }
+    addAll(customInputs) {
+        customInputs.forEach(this.add.bind(this));
+        return this;
+    }
+    mapAndAdd(elem, mapper) {
+        return this.add(mapper(elem));
+    }
+    mapAndAddAll(elems, mapper) {
+        elems.map(mapper).forEach(this.add.bind(this));
+        return this;
+    }
+    static getInstance() {
+        if (CustomInputsHub.instance === null) CustomInputsHub.instance = new CustomInputsHub();
+        return CustomInputsHub.instance;
+    }
+}
+CustomInputsHub.instance = null;
+exports.CustomInputsHub = CustomInputsHub;
+//# sourceMappingURL=CustomInputsHub.js.map
+//# sourceMappingURL=CustomInputsHub.js.map
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const make_bind_1 = __webpack_require__(3);
+const CustomInputsHub_1 = __webpack_require__(1);
 document.addEventListener("DOMContentLoaded", () => {
     const checkBoxes = Array.from(document.querySelectorAll("input[type='checkbox'][data-custom]")).map(e => e);
     const radioButtons = Array.from(document.querySelectorAll("input[type='radio'][data-custom]")).map(e => e);
@@ -128,23 +168,23 @@ document.addEventListener("DOMContentLoaded", () => {
 //# sourceMappingURL=app.js.map
 
 /***/ }),
-/* 2 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const make_1 = __webpack_require__(3);
-const CheckBox_1 = __webpack_require__(4);
-const RadioButton_1 = __webpack_require__(6);
+const make_1 = __webpack_require__(4);
+const CheckBox_1 = __webpack_require__(5);
+const RadioButton_1 = __webpack_require__(7);
 exports.makeCheckBox = make_1.make.bind(make_1.make, CheckBox_1.CheckBox);
 exports.makeRadioButton = make_1.make.bind(make_1.make, RadioButton_1.RadioButton);
 //# sourceMappingURL=make-bind.js.map
 //# sourceMappingURL=make-bind.js.map
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -159,7 +199,7 @@ exports.make = make;
 //# sourceMappingURL=make.js.map
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -204,7 +244,7 @@ exports.CheckBox = CheckBox;
 //# sourceMappingURL=CheckBox.js.map
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -229,6 +269,9 @@ class AbstractCustomInput {
         this.elem.style["display"] = "none";
         this.adjustClass();
     }
+    getElem() {
+        return this.elem;
+    }
     getContent() {
         return document.createElement("SPAN");
     }
@@ -238,24 +281,6 @@ exports.AbstractCustomInput = AbstractCustomInput;
 //# sourceMappingURL=AbstractCustomInput.js.map
 
 /***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", { value: true });
-const SelectableCustomInput_1 = __webpack_require__(0);
-class RadioButton extends SelectableCustomInput_1.SelectableCustomInput {
-    constructor(radioButton, classNames) {
-        super(radioButton, `radio-button ${classNames}`);
-    }
-}
-exports.RadioButton = RadioButton;
-//# sourceMappingURL=RadioButton.js.map
-//# sourceMappingURL=RadioButton.js.map
-
-/***/ }),
 /* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -263,34 +288,46 @@ exports.RadioButton = RadioButton;
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-class CustomInputsHub {
-    constructor() {
-        this.inner = [];
+const SelectableCustomInput_1 = __webpack_require__(0);
+const CustomInputsHub_1 = __webpack_require__(1);
+class RadioButton extends SelectableCustomInput_1.SelectableCustomInput {
+    constructor(radioButton, classNames) {
+        super(radioButton, `radio-button ${classNames}`);
+        this.group = Array.from(document.querySelectorAll(`input[type="radio"][name="${this.elem.getAttribute("name")}"]`)).map(e => e).filter(e => e !== this.elem);
     }
-    add(customInput) {
-        this.inner.push(customInput);
+    getContent() {
+        const outerCircle = document.createElement("DIV");
+        const innerDot = document.createElement("DIV");
+        outerCircle.classList.add("outer");
+        innerDot.classList.add("inner");
+        outerCircle.appendChild(innerDot);
+        return outerCircle;
+    }
+    addEventListeners(elem, custom) {
+        super.addEventListeners(elem, custom);
+        custom.addEventListener("click", () => {
+            const currentState = this.getState();
+            const states = SelectableCustomInput_1.SelectableCustomInput.classes;
+            if (currentState === states.DISABLED || currentState === states.SELECTED) return;
+            this.group.forEach(e => e.checked = false);
+            this.group.map(e => CustomInputsHub_1.CustomInputsHub.getInstance().get(e)).forEach(c => c.adjustClass());
+            elem.checked = currentState !== states.SELECTED;
+            if (elem.indeterminate) elem.indeterminate = false;
+            this.adjustClass();
+            console.log("Old state: ", currentState);
+            console.log("Was not disabled");
+            console.log("Is now: ", elem.checked ? states.SELECTED : states.NOT_SELECTED);
+            console.log("Indeterminate state: ", elem.indeterminate);
+            console.log("New state: ", this.getState());
+            console.log("/***********************************\\");
+            console.log("\\***********************************/");
+        });
         return this;
-    }
-    addAll(customInputs) {
-        customInputs.forEach(this.add.bind(this));
-        return this;
-    }
-    mapAndAdd(elem, mapper) {
-        return this.add(mapper(elem));
-    }
-    mapAndAddAll(elems, mapper) {
-        elems.map(mapper).forEach(this.add.bind(this));
-        return this;
-    }
-    static getInstance() {
-        if (CustomInputsHub.instance === null) CustomInputsHub.instance = new CustomInputsHub();
-        return CustomInputsHub.instance;
     }
 }
-CustomInputsHub.instance = null;
-exports.CustomInputsHub = CustomInputsHub;
-//# sourceMappingURL=CustomInputsHub.js.map
-//# sourceMappingURL=CustomInputsHub.js.map
+exports.RadioButton = RadioButton;
+//# sourceMappingURL=RadioButton.js.map
+//# sourceMappingURL=RadioButton.js.map
 
 /***/ })
 /******/ ]);

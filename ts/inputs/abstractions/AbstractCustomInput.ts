@@ -33,6 +33,8 @@ export abstract class AbstractCustomInput{
     this.elem.style["display"] = "none";
     this.adjustClass();
   }
+
+  public getElem(): HTMLElement{ return this.elem; }
   
   protected abstract adjustClass(): AbstractCustomInput;
   

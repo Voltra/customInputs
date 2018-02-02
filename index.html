@@ -7,9 +7,17 @@
 
     <body>
         <form method="GET" action="" onsubmit="function f(e){e.preventDefault();}">
-            <input data-custom id="check" type="checkbox"/>
+            <label for="check">Checkbox: </label>
+            <input data-custom id="check" type="checkbox" name="check"/>
+
+            <label for="rad1">Rad 1: </label>
             <input data-custom id="#rad1" type="radio" name="rad" disabled/>
+
+            <label for="rad2">Rad 2: </label>
             <input data-custom id="#rad2" type="radio" name="rad"/>
+
+            <label for="rad3">Rad 3: </label>
+            <input data-custom id="#rad3" type="radio" name="rad"/>
         </form>
     </body>
 </html>

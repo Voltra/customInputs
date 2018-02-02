@@ -24,7 +24,7 @@ export abstract class SelectableCustomInput extends AbstractCustomInput{
     	return SelectableCustomInput.classes.NOT_SELECTED;
   }
   
-  protected adjustClass(): SelectableCustomInput{
+  public adjustClass(): SelectableCustomInput{
     
     const classes: Array<string> = (<any>Object).values(SelectableCustomInput.classes);
     const thisClasses: Array<string> = classes.filter(className => {
@@ -43,7 +43,7 @@ export abstract class SelectableCustomInput extends AbstractCustomInput{
     return this;
   }
 
-  protected addEventListeners(elem, custom): AbstractCustomInput{
+  protected addEventListeners(elem: HTMLInputElement, custom: HTMLElement): AbstractCustomInput{
     elem.addEventListener("change", this.adjustClass.bind(this));
     return this;
   }
