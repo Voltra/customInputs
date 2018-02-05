@@ -8,7 +8,7 @@
     @include transition-duration($duration);
     @include transition-property(opacity, border-color);
     @include transition-timing-function(ease-in-out);
-    background-color: $primary;
+    background-color: white;//$primary;
     border: 1px solid $accent;
 
     & .rail{

@@ -324,7 +324,7 @@ body {
   -o-transition-timing-function: ease-in-out;
   -webkit-transition-timing-function: ease-in-out;
   transition-timing-function: ease-in-out;
-  background-color: #3c3f41;
+  background-color: white;
   border: 1px solid #3b5998;
 }
 /* line 14, ../sass/_checkbox-toggle-inner.scss */
@@ -340,7 +340,7 @@ body {
 /* line 20, ../sass/_checkbox-toggle-inner.scss */
 .custom.check-toggle-inner .rail .knob {
   position: absolute;
-  height: 100%;
+  height: 75%;
   width: 25%;
   -moz-transform: translate3d(50%, -50%, 0);
   -webkit-transform: translate3d(50%, -50%, 0);
