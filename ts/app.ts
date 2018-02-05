@@ -1,4 +1,4 @@
-import {makeCheckBox, makeRadioButton, makeCheckBoxTick, makeCheckBoxToggle} from "./make-bind"
+import {makeCheckBox, makeRadioButton, makeCheckBoxTick, makeCheckBoxToggle, makeCheckBoxToggleInner} from "./make-bind"
 import {CustomInputsHub} from "./inputs/CustomInputsHub"
 
 document.addEventListener("DOMContentLoaded", ()=>{
@@ -17,10 +17,15 @@ document.addEventListener("DOMContentLoaded", ()=>{
     const checkBoxToggles: Array<HTMLInputElement> = Array.from(
         document.querySelectorAll("input[type='checkbox'][data-custom-toggle]")
     ).map(e => (e as HTMLInputElement));
+
+    const checkBoxToggleInners: Array<HTMLInputElement> = Array.from(
+        document.querySelectorAll("input[type='checkbox'][data-custom-toggle-inner]")
+    ).map(e => (e as HTMLInputElement));
     
     CustomInputsHub.getInstance()
     .mapAndAddAll(checkBoxes, makeCheckBox)
     .mapAndAddAll(radioButtons, makeRadioButton)
     .mapAndAddAll(checkBoxTicks, makeCheckBoxTick)
-    .mapAndAddAll(checkBoxToggles, makeCheckBoxToggle);
+    .mapAndAddAll(checkBoxToggles, makeCheckBoxToggle)
+    .mapAndAddAll(checkBoxToggleInners, makeCheckBoxToggleInner);
 });

@@ -200,7 +200,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const radioButtons = Array.from(document.querySelectorAll("input[type='radio'][data-custom]")).map(e => e);
     const checkBoxTicks = Array.from(document.querySelectorAll("input[type='checkbox'][data-custom-tick]")).map(e => e);
     const checkBoxToggles = Array.from(document.querySelectorAll("input[type='checkbox'][data-custom-toggle]")).map(e => e);
-    CustomInputsHub_1.CustomInputsHub.getInstance().mapAndAddAll(checkBoxes, make_bind_1.makeCheckBox).mapAndAddAll(radioButtons, make_bind_1.makeRadioButton).mapAndAddAll(checkBoxTicks, make_bind_1.makeCheckBoxTick).mapAndAddAll(checkBoxToggles, make_bind_1.makeCheckBoxToggle);
+    const checkBoxToggleInners = Array.from(document.querySelectorAll("input[type='checkbox'][data-custom-toggle-inner]")).map(e => e);
+    CustomInputsHub_1.CustomInputsHub.getInstance().mapAndAddAll(checkBoxes, make_bind_1.makeCheckBox).mapAndAddAll(radioButtons, make_bind_1.makeRadioButton).mapAndAddAll(checkBoxTicks, make_bind_1.makeCheckBoxTick).mapAndAddAll(checkBoxToggles, make_bind_1.makeCheckBoxToggle).mapAndAddAll(checkBoxToggleInners, make_bind_1.makeCheckBoxToggleInner);
 });
 //# sourceMappingURL=app.js.map
 //# sourceMappingURL=app.js.map
@@ -218,10 +219,12 @@ const CheckBox_1 = __webpack_require__(0);
 const RadioButton_1 = __webpack_require__(7);
 const CheckBoxTick_1 = __webpack_require__(8);
 const CheckBoxToggle_1 = __webpack_require__(9);
+const CheckBoxToggleInner_1 = __webpack_require__(10);
 exports.makeCheckBox = make_1.make.bind(make_1.make, CheckBox_1.CheckBox);
 exports.makeRadioButton = make_1.make.bind(make_1.make, RadioButton_1.RadioButton);
 exports.makeCheckBoxTick = make_1.make.bind(make_1.make, CheckBoxTick_1.CheckBoxTick);
 exports.makeCheckBoxToggle = make_1.make.bind(make_1.make, CheckBoxToggle_1.CheckBoxToggle);
+exports.makeCheckBoxToggleInner = make_1.make.bind(make_1.make, CheckBoxToggleInner_1.CheckBoxToggleInner);
 //# sourceMappingURL=make-bind.js.map
 //# sourceMappingURL=make-bind.js.map
 
@@ -370,6 +373,32 @@ class CheckBoxToggle extends CheckBox_1.CheckBox {
 exports.CheckBoxToggle = CheckBoxToggle;
 //# sourceMappingURL=CheckBoxToggle.js.map
 //# sourceMappingURL=CheckBoxToggle.js.map
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const CheckBox_1 = __webpack_require__(0);
+class CheckBoxToggleInner extends CheckBox_1.CheckBox {
+    constructor(elem, classNames) {
+        super(elem, `check-toggle-inner ${classNames}}`);
+    }
+    getContent() {
+        const rail = document.createElement("DIV");
+        const knob = document.createElement("DIV");
+        rail.classList.add("rail");
+        knob.classList.add("knob");
+        rail.appendChild(knob);
+        return rail;
+    }
+}
+exports.CheckBoxToggleInner = CheckBoxToggleInner;
+//# sourceMappingURL=CheckBoxToggleInner.js.map
+//# sourceMappingURL=CheckBoxToggleInner.js.map
 
 /***/ })
 /******/ ]);
