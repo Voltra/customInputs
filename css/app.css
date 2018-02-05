@@ -342,9 +342,9 @@ body {
   position: absolute;
   height: 75%;
   width: 25%;
-  -moz-transform: translate3d(50%, -50%, 0);
-  -webkit-transform: translate3d(50%, -50%, 0);
-  transform: translate3d(50%, -50%, 0);
+  -moz-transform: translate3d(65%, -50%, 0);
+  -webkit-transform: translate3d(65%, -50%, 0);
+  transform: translate3d(65%, -50%, 0);
   background-color: #3b5998;
   -moz-transition-duration: 0.2s;
   -o-transition-duration: 0.2s;
@@ -379,9 +379,9 @@ body {
 }
 /* line 50, ../sass/_checkbox-toggle-inner.scss */
 .custom.check-toggle-inner.not-selected .knob {
-  -moz-transform: translate3d(50%, -50%, 0);
-  -webkit-transform: translate3d(50%, -50%, 0);
-  transform: translate3d(50%, -50%, 0);
+  -moz-transform: translate3d(65%, -50%, 0);
+  -webkit-transform: translate3d(65%, -50%, 0);
+  transform: translate3d(65%, -50%, 0);
   opacity: 0.5;
 }
 /* line 56, ../sass/_checkbox-toggle-inner.scss */

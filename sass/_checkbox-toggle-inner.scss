@@ -22,7 +22,7 @@
             height: 75%;
             width: 25%;
 
-            @include translate3d(50%, -50%, 0);
+            @include translate3d(65%, -50%, 0);
 
             background-color: $accent;
 
@@ -48,7 +48,7 @@
         border-color: rgba($accent, $opa);
 
         & .knob{
-            @include translate3d(50%, -50%, 0);
+            @include translate3d(65%, -50%, 0);
             opacity: $opa;
         }
     }
