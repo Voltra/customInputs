@@ -7,26 +7,33 @@
 
     <body>
         <form method="GET" action="" onsubmit="function f(e){e.preventDefault();}">
-            <label for="check">Checkbox: </label>
+            <label for="check">Regular checkbox: </label>
             <input data-custom id="check" type="checkbox" name="check"/>
+            <br/>
 
-            <label for="rad1">Radio: </label>
+            <label for="rad1">Regular radio #radio (disabled): </label>
             <input data-custom id="#rad1" type="radio" name="rad" disabled/>
+            <br/>
 
-            <label for="rad2">Radio: </label>
+            <label for="rad2">Regular radio #radio: </label>
             <input data-custom id="#rad2" type="radio" name="rad"/>
+            <br/>
 
-            <label for="rad3">Radio: </label>
+            <label for="rad3">Regular radio #radio: </label>
             <input checked data-custom id="#rad3" type="radio" name="rad"/>
+            <br/>
 
-            <label for="checkTick">Checkbox: </label>
+            <label for="checkTick">Checkbox tick: </label>
             <input checked data-custom-tick id="checkTick" type="checkbox" name="checkTick"/>
+            <br/>
 
-            <label for="checkToggle">Checkbox: </label>
+            <label for="checkToggle">Checkbox toggle: </label>
             <input data-custom-toggle id="checkToggle" type="checkbox" name="checkToggle"/>
+            <br/>
 
-            <label for="checkToggleInner">Checkbox: </label>
+            <label for="checkToggleInner">Checkbox toggle inner: </label>
             <input checked data-custom-toggle-inner id="checkToggleInner" type="checkbox" name="checkToggleInner"/>
+            <br/>
         </form>
     </body>
 </html>
