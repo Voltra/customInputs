@@ -195,12 +195,18 @@ exports.CustomInputsHub = CustomInputsHub;
 Object.defineProperty(exports, "__esModule", { value: true });
 const make_bind_1 = __webpack_require__(4);
 const CustomInputsHub_1 = __webpack_require__(2);
+function getInputs(type, data) {
+    const startsWithData = /^data-/;
+    let dataAttr = data;
+    if (!startsWithData.test(dataAttr)) dataAttr = `data-${dataAttr}`;
+    return Array.from(document.querySelectorAll(`input[type="${type}"][${dataAttr}]`)).map(e => e);
+}
 document.addEventListener("DOMContentLoaded", () => {
-    const checkBoxes = Array.from(document.querySelectorAll("input[type='checkbox'][data-custom]")).map(e => e);
-    const radioButtons = Array.from(document.querySelectorAll("input[type='radio'][data-custom]")).map(e => e);
-    const checkBoxTicks = Array.from(document.querySelectorAll("input[type='checkbox'][data-custom-tick]")).map(e => e);
-    const checkBoxToggles = Array.from(document.querySelectorAll("input[type='checkbox'][data-custom-toggle]")).map(e => e);
-    const checkBoxToggleInners = Array.from(document.querySelectorAll("input[type='checkbox'][data-custom-toggle-inner]")).map(e => e);
+    const checkBoxes = getInputs("checkbox", "custom");
+    const radioButtons = getInputs("radio", "custom");
+    const checkBoxTicks = getInputs("checkbox", "custom-tick");
+    const checkBoxToggles = getInputs("checkbox", "custom-toggle");
+    const checkBoxToggleInners = getInputs("checkbox", "custom-toggle-inner");
     CustomInputsHub_1.CustomInputsHub.getInstance().mapAndAddAll(checkBoxes, make_bind_1.makeCheckBox).mapAndAddAll(radioButtons, make_bind_1.makeRadioButton).mapAndAddAll(checkBoxTicks, make_bind_1.makeCheckBoxTick).mapAndAddAll(checkBoxToggles, make_bind_1.makeCheckBoxToggle).mapAndAddAll(checkBoxToggleInners, make_bind_1.makeCheckBoxToggleInner);
 });
 //# sourceMappingURL=app.js.map
