@@ -11,6 +11,8 @@
     background-color: white;//$primary;
     border: 1px solid $accent;
 
+    box-sizing: content-box;
+
     & .rail{
         width: 100%;
         height: 100%;
